@@ -1,0 +1,228 @@
+/* Reset CSS */
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ul, ol, li, table, tr, th, td, form, input, button, textarea {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+body {
+    font-family: 'Roboto', sans-serif; /* Utiliza la fuente Roboto para todo el cuerpo */
+    font-size: 16px;
+    line-height: 1.6;
+    background-color: #f7f7f7; /* Color de fondo general */
+    color: #333; /* Color de texto principal */
+}
+
+/* Encabezado */
+header {
+    background-color: #000; /* Color de fondo del encabezado */
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 1200px; /* Ancho máximo del contenido */
+    margin: 0 auto; /* Centra el contenido en la página */
+    padding: 20px;
+}
+
+/* Botones */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #070707; /* Color de fondo del botón */
+    color: #000; /* Color del texto del botón */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #070707; /* Color de fondo del botón al pasar el ratón */
+}
+
+/* Formularios */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+aside.bg-light {
+    background-color: #f7f7f7;
+}
+
+footer.bg-dark {
+    background-color: #333;
+}
+
+.sidebar {
+  height: 100vh;
+  width: 280px; /* ajusta según tus preferencias */
+  padding: 0;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  overflow-x: hidden;
+  overflow-y: auto;
+  transition: all 0.3s ease-in-out;
+  left: 0;
+}
+
+.main-content {
+  margin-left: 200px; /* ajusta según el ancho de tu sidebar */
+}
+
+.sidebar .sidebar-inner {
+  padding: 20px;
+}
+
+.sidebar .sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar .sidebar-menu-item {
+  /*Para los elementos principales del menu*/
+  position: relative;
+  margin-bottom: 10px;
+  margin-left:0px;
+}
+
+.sidebar.sidebar-menu-item a {
+  /*... */
+  text-decoration: none; /* remove underline */
+  color: #000; /* set the color to black */
+  text-align: right; /* align the icon to the right */
+}
+
+.sidebar.sidebar-menu-item a:hover {
+  /*... */
+  text-decoration: none; /* remove underline on hover */
+  color: #000; /* set the color to black */
+}
+
+.sidebar .sidebar-menu-item.active a {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #000;
+}
+
+.sidebar .sidebar-menu-item i {
+  margin-right: 10px;
+  font-size: 18px;
+  color: #000;
+}
+
+.sidebar-submenu {
+  padding-left: 20px; /* add some padding to indent the submenu */
+  list-style: none; /* remove bullet points */
+}
+
+.sidebar-submenu > li {
+  margin-bottom: 10px; /* add some margin to separate submenu items */
+}
+
+.sidebar-submenu > li > a {
+  display: flex;
+  align-items: center; /* make the submenu item links flexbox */
+  padding: 10px; /* add some padding to make the submenu items more prominent */
+  padding-left: 30px; /* increase the padding to align with the main menu items */
+  text-align: left; /* align the text to the left */
+  border-radius: 4px; /* add some border radius to make the submenu items more rounded */
+  text-decoration: none; /* remove underline */
+  color: #333; /* set the color to a dark gray */
+  font-size: 12px;
+}
+
+.sidebar-submenu > li > a:hover {
+  background-color: #f0f0f0; /* add some hover effect to the submenu items */
+  text-decoration: none; /* remove underline on hover */
+  color: #333; /* set the color to a dark gray */
+}
+
+.sidebar-submenu > li > i {
+  display: none; /* hide the icons */
+}
+
+.menu-text {
+  color: #000; /* or any other black color code you prefer */
+}
+
+a:hover {
+  text-decoration: none!important;
+}
+
+/*-----------------Breadcrum para las vistas-----------------*/
+.breadcrumb-sm {
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+}
+
+.breadcrumb-sm .breadcrumb-item {
+  margin-right: 0.25rem;
+}
+
+.breadcrumb-sm .breadcrumb-item + .breadcrumb-item::before {
+  content: "/";
+  display: inline-block;
+  padding: 0 px;
+  color: #ccc;
+}
+
+.breadcrumb-sm .breadcrumb-item a {
+  color: #333;
+  text-decoration: none;
+}
+
+.breadcrumb-sm .breadcrumb-item a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-sm .breadcrumb-item.active {
+  color: #007bff;
+}
+
+.float-right {
+  float: right;
+}
+
+.mb-3 {
+  margin-bottom: 6rem;
+  height: 1.5rem;
+}
+
+/*--------------------------fin------------------------*/
+@media (max-width: 958px) {
+  .sidebar {
+    width: 150px;
+    left: 0;
+  }
+  .main-content {
+    margin-left: 150px;
+  }
+  .sidebar-logo {
+    margin-bottom: 20px;
+  }
+  .sidebar-menu {
+    font-size: 0.8rem;
+  }
+  .submenu-toggle {
+    margin-left: auto; /* push the icon to the right */
+  }
+}
