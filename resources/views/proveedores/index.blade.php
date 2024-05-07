@@ -2,7 +2,7 @@
 
 @section('title', 'Proveedores')
 
-@section('content')
+@section('contenido')
 <div class="row">
     <nav aria-label="Breadcrumb">
     <ol class="breadcrumb breadcrumb-sm float-right">

@@ -2,7 +2,7 @@
 
 @section('title', 'Nuevo producto')
 
-@section('content')
+@section('contenido')
 <div class="row">
     <nav aria-label="Breadcrumb">
         <ol class="breadcrumb breadcrumb-sm float-right">
@@ -40,7 +40,7 @@
 
         <div class="form-group">
             <label for="proveedor">Proveedor</label>
-            <select id="proveedor" class="js-example-responsive" style="width: 100%">
+            <select id="proveedor" class="select2">
                 <option value="">Seleccione el proveedor...</option>
                 @foreach ($proveedores as $proveedor)
                     <option value="{{ $proveedor['id'] }}">{{ $proveedor['nombre'] }}</option>
@@ -64,5 +64,10 @@
 
 @section('scripts')
 
+<script>
+    $(document).ready(function() {
+        $('.select2').select2();
+    });
+</script>
 
 @endsection

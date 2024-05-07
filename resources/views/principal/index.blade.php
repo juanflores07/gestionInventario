@@ -2,7 +2,7 @@
 
 @section('title', 'Inventario')
 
-@section('content')
+@section('contenido')
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-6">

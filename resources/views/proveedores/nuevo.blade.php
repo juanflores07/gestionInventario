@@ -2,7 +2,7 @@
 
 @section('title', 'Nuevo proveedor')
 
-@section('content')
+@section('contenido')
 <div class="row">
     <nav aria-label="Breadcrumb">
         <ol class="breadcrumb breadcrumb-sm float-right">
@@ -25,7 +25,7 @@
 
         <div class="form-group">
             <label for="nit">NIT</label>
-            <input type="text" class="form-control" id="cantidad_producto" placeholder="####">
+            <input type="text" class="form-control" id="cantidad_producto" placeholder="####-######-###-#">
         </div>
 
         <div class="form-group">
@@ -35,24 +35,25 @@
 
         <div class="form-group">
             <label for="pais">País</label>
-            <select id="pais" class="js-example-responsive" style="width: 100%">
+            <select id="pais" class="select2">
                 <option value="">Seleccione el país...</option>
             </select>
         </div>
 
         <div class="form-group">
             <label for="departamento">Departamento</label>
-            <select id="departamento" class="js-example-responsive" style="width: 100%">
+            <select id="departamento" class="select2">
                 <option value="">Seleccione el departamento...</option>
             </select>
         </div>
 
         <div class="form-group">
             <label for="ciudad">Ciudad</label>
-            <select id="ciudad" class="js-example-responsive" style="width: 100%">
+            <select id="ciudad" class="select2">
                 <option value="">Seleccione la ciudad...</option>
             </select>
         </div>
+
 
         <div class="mb-3"></div>
 
@@ -71,5 +72,10 @@
 
 @section('scripts')
 
+<script>
+    $(document).ready(function() {
+        $('.select2').select2();
+    });
+</script>
 
 @endsection
