@@ -3,7 +3,9 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "cy:open": "cypress open",
+        "cy:test": "cypress run"
     },
     "devDependencies": {
         "axios": "^1.6.4",
