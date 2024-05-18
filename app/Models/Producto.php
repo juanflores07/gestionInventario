@@ -9,22 +9,28 @@ class Producto extends Model
 {
     use HasFactory;
 
-    // Indica el nombre de la tabla
     protected $table = 'producto';
 
+    protected $primaryKey = 'id_producto';
 
-    // Indica los campos que pueden ser asignados
     protected $fillable = [
-        'codigo',
         'nombre',
-        'fechaIngreso',
-        'fechaVencimiento',
+        'codigo',
         'cantidad',
+        'descripcion',
+        'fecha_ingreso',
+        'fecha_vencimiento',
         'precio',
-        'idProveedor'
-
+        'id_proveedor'
     ];
 
-    // Desactiva las marcas de tiempo automáticas
+    // Relación con el modelo Proveedores
+    public function proveedor()
+    {
+        return $this->belongsTo(Proveedores::class, 'id_proveedor', 'id_proveedor');
+    }
+
+    //Para que no quiera meter valores en las columas generadas automaticamente por Laravel que son: created_at y updated_at
     public $timestamps = false;
+
 }
