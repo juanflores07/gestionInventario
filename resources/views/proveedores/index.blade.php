@@ -2,6 +2,26 @@
 
 @section('title', 'Proveedores')
 
+@section('estilos')
+<style>
+/* Estilos CSS */
+#tablaProveedor {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+#tablaProveedor th,
+#tablaProveedor td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd; /* Borde inferior para todas las celdas */
+}
+
+#tablaProveedor th {
+    background-color: #f2f2f2;
+}
+</style>
+@endsection
+
 @section('contenido')
 <div class="row">
     <nav aria-label="Breadcrumb">
@@ -34,23 +54,29 @@
     <thead class="text-center">
         <tr class="bg-navy">
             <th>Nombre o razón social</th>
+            <th>Teléfono</th>
             <th>NIT</th>
-            <th>NRC</th>
-            <th>País</th>
-            <th width="25%">Acciones</th>
+            <th>Dirección</th>
+            <th>Departamento</th>
+            <th>Municipio</th>
+            <th width="20%">Acciones</th>
         </tr>
     </thead>
     <tbody class="text-center">
+      @foreach ($proveedores as $proveedor)
         <tr>
-            <td>ABRO</td>
-            <td>1234-123456-111-0 </td>
-            <td>12345-6</td>
-            <td>El Salvador</td>
-            <td>
-                <a class="btn btn-app bg-info"><i class="far fa-eye"></i>&nbsp;Ver</a>
-                <a class="btn btn-app bg-warning"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Editar</a>
-            </td>
+          <td>{{ $proveedor->nombre }}</td>
+          <td>{{ $proveedor->telefono }}</td>
+          <td>{{ $proveedor->nit }}</td>
+          <td>{{ $proveedor->direccion }}</td>
+          <td>{{ $proveedor->municipio->nombre}}</td>
+          <td>{{ $proveedor->municipio->departamento->nombre}}</td>
+          <td>
+            <a class="btn btn-app bg-info"><i class="far fa-eye"></i>&nbsp;Ver</a>
+            <a class="btn btn-app bg-warning"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Editar</a>
+          </td>
         </tr>
+      @endforeach
     </tbody>
     </table>
 </div>
