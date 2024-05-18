@@ -10,7 +10,10 @@ class ProductoController extends Controller
 {
     public function index()
     {
-        $productos = Producto::orderBy('fecha_ingreso', 'desc')->get();
+        $productos = Producto::orderBy('fecha_ingreso', 'desc')
+        ->orderBy('id_producto', 'desc')
+        ->get();
+
         return view('productos.index', ['productos' => $productos]); 
     }
 
@@ -61,10 +64,14 @@ class ProductoController extends Controller
         ]);
 
         // Generar el código del producto automáticamente
-        $nombre_corto = strtoupper(substr($validatedData['nombre'], 0, 3));
-        $proveedor = Proveedores::findOrFail($validatedData['id_proveedor']);
-        $nombre_proveedor_corto = strtoupper(substr($proveedor->nombre, 0, 4));
+        //Obtiene nombre del producto y toma las primeras 3 letras
+        $nombre_corto = strtoupper(substr($this->quitarTildes($validatedData['nombre']), 0, 3));
 
+        //Obtiene nombre del proveedor y toma las primeras 4 letras
+        $proveedor = Proveedores::findOrFail($validatedData['id_proveedor']);
+        $nombre_proveedor_corto = strtoupper(substr($this->quitarTildes($proveedor->nombre), 0, 4));
+
+        //Construccion código
         $codigo_base = $nombre_corto . '-' . $nombre_proveedor_corto . '-';
 
         $ultimo_producto = Producto::where('codigo', 'like', $codigo_base . '%')->orderBy('id_producto', 'desc')->first();
@@ -98,10 +105,14 @@ class ProductoController extends Controller
         ]);
     
         // Generar el código del producto automáticamente
-        $nombre_corto = strtoupper(substr($validatedData['nombre'], 0, 3));
-        $proveedor = Proveedores::findOrFail($validatedData['id_proveedor']);
-        $nombre_proveedor_corto = strtoupper(substr($proveedor->nombre, 0, 4));
+        //Obtiene nombre del producto y toma las primeras 3 letras
+        $nombre_corto = strtoupper(substr($this->quitarTildes($validatedData['nombre']), 0, 3));
 
+        //Obtiene nombre del proveedor y toma las primeras 4 letras
+        $proveedor = Proveedores::findOrFail($validatedData['id_proveedor']);
+        $nombre_proveedor_corto = strtoupper(substr($this->quitarTildes($proveedor->nombre), 0, 4));
+
+        //Construccion código
         $codigo_base = $nombre_corto . '-' . $nombre_proveedor_corto . '-';
 
         $ultimo_producto = Producto::where('codigo', 'like', $codigo_base . '%')->orderBy('id_producto', 'desc')->first();
@@ -119,5 +130,21 @@ class ProductoController extends Controller
         return redirect()->route('productos')->with('success', 'Producto editado correctamente');
     }
 
+    public static function quitarTildes($texto) {
+        // Primero, convierte el texto a minúsculas
+        $texto = mb_strtolower($texto, 'UTF-8');
+    
+        // Reemplaza las letras con tilde por su equivalente sin tilde
+        $texto = str_replace(
+            ['á', 'é', 'í', 'ó', 'ú', 'ü'],
+            ['a', 'e', 'i', 'o', 'u', 'u'],
+            $texto
+        );
+    
+        // Convierte el texto nuevamente a mayúsculas
+        $texto = mb_strtoupper($texto, 'UTF-8');
+    
+        return $texto;
+    }   
     
 }
