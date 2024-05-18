@@ -20,6 +20,15 @@ Route::get('/proveedores', [ProveedoresController::class, 'index'])->name('prove
 
 Route::get('/proveedores/nuevo', [ProveedoresController::class, 'nuevo'])->name('nuevo_proveedor');
 
+Route::post('/proveedores/guardar', [ProveedoresController::class, 'guardar'])->name('guardar_proveedor');
+
+Route::post('/productos/guardar', [ProductoController::class, 'guardar'])->name('guardar_producto');
+
+Route::post('/proveedor/buscarDepartamento', [ProveedoresController::class, 'obtenerDepartamento'])->name('buscar_departamento');
+
+Route::post('/proveedor/buscarMunicipio', [ProveedoresController::class, 'obtenerMunicipio'])->name('buscar_municipio');
+
 Route::get('/reportes/productosRecientes', [ReportesController::class, 'productosRecientes'])->name('productos_recientes');
 
 Route::get('/reportes/productosRetirados', [ReportesController::class, 'productosRetirados'])->name('productos_retirados');
+
