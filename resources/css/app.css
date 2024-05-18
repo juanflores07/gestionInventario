@@ -230,7 +230,7 @@ a {
     margin-left: auto; /* push the icon to the right */
   }
 }
-
+/*
 @media (max-width: 1358px) {
   .sidebar {
     width: 220px;
@@ -247,5 +247,5 @@ a {
   }
   .submenu-toggle {
     margin-left: auto; /* push the icon to the right */
-  }
-}
+  
+
