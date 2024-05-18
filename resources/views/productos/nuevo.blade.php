@@ -40,7 +40,7 @@
         </div>
 
         <div class="form-group">
-            <label for="fecha_ingreso">Fecha vencimiento</label>
+            <label for="fecha_ingreso">Fecha vencimiento (si aplica)</label>
             <input type="date" class="form-control datetimepicker" id="fecha_vencimiento" name="fecha_vencimiento">
         </div>
 

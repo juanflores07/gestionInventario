@@ -70,12 +70,12 @@
           <td>{{$producto->nombre}}</td>
           <td>{{$producto->cantidad}}</td>
           <td>{{$producto->fecha_ingreso}}</td>
-          <td>{{$producto->fecha_vencimiento}}</td>
+          <td>{{$producto->fecha_vencimiento ? $producto->fecha_vencimiento : 'No aplica'}}</td>
           <td>{{$producto->precio}}</td>
           <td>{{$producto->proveedor->nombre}}</td>
           <td>
-            <a class="btn btn-app bg-info"><i class="far fa-eye"></i>&nbsp;Ver</a>
-            <a class="btn btn-app bg-warning"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Editar</a>
+            <a href="{{ route('ver_producto', ['id_producto' => $producto->id_producto]) }}" class="btn btn-app bg-info"><i class="far fa-eye"></i>&nbsp;Ver</a>
+            <a href="{{ route('editar_producto', ['id_producto' => $producto->id_producto]) }}" class="btn btn-app bg-warning"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Editar</a>
           </td>
         </tr>
       @endforeach
