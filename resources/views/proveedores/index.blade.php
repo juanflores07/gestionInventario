@@ -49,6 +49,12 @@
 
 <br>
 
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div><br>
+@endif
+
 <div class="table-responsive" id="tabProveedor">
     <table id="tablaProveedor" class="table table-bordered">
     <thead class="text-center">
