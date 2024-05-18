@@ -248,7 +248,7 @@ a {
 }
 
 /*-----------1358 es pantalla completa en la laptop------*/
-@media (mix-width: 1066px) and (max-width: 1358px) {
+@media (min-width: 1064px) and (max-width: 1358px) {
   .sidebar {
     width: 120px;
     left: 0;
@@ -275,6 +275,38 @@ a {
   }
   .sidebar-menu {
     font-size: 0.8rem;
+  }
+  .submenu-toggle {
+    margin-left: auto;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 1063px) {
+  .sidebar {
+    width:110px;
+  }
+
+  .sidebar-menu-item a .menu-text {
+    display: none;
+  }
+  .sidebar-menu-item a i.fa-solid {
+    display: inline-block;
+  }
+
+  .sidebar-submenu > li > a {
+    font-size: 0px;
+  }
+
+  .sidebar-submenu {
+    padding-left: 0px;
+    list-style: none; 
+  }
+  
+  .main-content {
+    margin-left: 150px;
+  }
+  .sidebar-menu {
+    font-size: 8rem;
   }
   .submenu-toggle {
     margin-left: auto;

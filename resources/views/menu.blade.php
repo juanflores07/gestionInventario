@@ -66,6 +66,22 @@
     <!--Sweet Alert (Para el swal)-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
+    <script>
+    $(document).ready(function(){
+        function setSidebarHeight() {
+            var windowHeight = $(window).width();
+            if(windowHeight < 2000){
+                $('.sidebar').height(windowHeight);
+            }
+            console.log(windowHeight);
+        }
+
+        // Llama a la función al cargar la página y cuando se redimensiona la ventana
+        setSidebarHeight();
+        $(window).resize(setSidebarHeight);
+        
+    });
+    </script>
     <!-- Script adicional -->
     @yield('scripts')
 </body>
