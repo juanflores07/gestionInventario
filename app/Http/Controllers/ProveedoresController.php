@@ -12,7 +12,7 @@ class ProveedoresController extends Controller
 {
     public function index()
     {
-        $proveedores = Proveedores::all();
+        $proveedores = Proveedores::orderBy('id_proveedor', 'desc')->get();
         return view('proveedores.index', ['proveedores' => $proveedores]); 
     }
 
@@ -23,6 +23,31 @@ class ProveedoresController extends Controller
         return view('proveedores.nuevo', [
             'paises' => $paises
         ]); 
+    }
+
+    public function ver($id_proveedor)
+    {
+        $proveedor = Proveedores::find($id_proveedor);
+        return view('proveedores.ver', ['proveedor' => $proveedor]); 
+
+    }
+
+    public function editar($id_proveedor)
+    {
+        $paises = Pais::all();
+        $proveedor = Proveedores::find($id_proveedor);
+        return view('proveedores.editar', ['proveedor' => $proveedor, 'paises'=>$paises]); 
+
+    }
+
+    public function eliminar($id_proveedor)
+    {
+        $proveedor = Proveedores::find($id_proveedor);
+
+        $proveedor->delete();
+
+        return redirect()->route('proveedores')->with('success', 'Proveedor eliminado correctamente');
+
     }
 
     public function guardar(Request $request)
@@ -40,8 +65,25 @@ class ProveedoresController extends Controller
         // Crear y guardar la nueva entidad
         Proveedores::create($validatedData);
 
-        // Redireccionar o realizar alguna otra acción
+        // Redireccionar
         return redirect()->route('proveedores')->with('success', 'Proveedor creado correctamente');
+    }
+
+    public function guardarEdicion($id_proveedor, Request $request)
+    {
+        $proveedor = Proveedores::findOrFail($id_proveedor);
+
+        $validatedData = $request->validate([
+            'direccion' => 'required|string|max:100',
+            'telefono' => 'required|string|max:15',
+            'nit' => 'required|string|max:17',
+            'id_municipio' => 'required|exists:municipio,id_municipio',
+        ]);
+
+        //Actualizar entidad
+        $proveedor->update($validatedData);
+
+        return redirect()->route('proveedores')->with('success', 'Proveedor editado correctamente');
     }
 
     public function obtenerDepartamento(Request $request)

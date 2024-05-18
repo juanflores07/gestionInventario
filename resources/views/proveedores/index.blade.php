@@ -72,8 +72,8 @@
           <td>{{ $proveedor->municipio->nombre}}</td>
           <td>{{ $proveedor->municipio->departamento->nombre}}</td>
           <td>
-            <a class="btn btn-app bg-info"><i class="far fa-eye"></i>&nbsp;Ver</a>
-            <a class="btn btn-app bg-warning"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Editar</a>
+            <a href="{{ route('ver_proveedor', ['id_proveedor' => $proveedor->id_proveedor]) }}" class="btn btn-app bg-info"><i class="far fa-eye"></i>&nbsp;Ver</a>
+            <a href="{{ route('editar_proveedor', ['id_proveedor' => $proveedor->id_proveedor]) }}" class="btn btn-app bg-warning"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Editar</a>
           </td>
         </tr>
       @endforeach
