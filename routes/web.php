@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedoresController;
 use App\Http\Controllers\ReportesController;
-
-
+use App\Http\Controllers\PaisController;
+use App\Http\Controllers\DepartamentoController;
+use App\Http\Controllers\MunicipioController;
 
 Route::get('/', function () {
     return view('principal.index');
@@ -57,8 +58,20 @@ Route::post('/proveedor/buscarMunicipio', [ProveedoresController::class, 'obtene
 
 //---------------------------------------------Fin funciones que uso para AJAX------------------------------------------------------//
 
+//---------------------------------------------Funciones para reportes------------------------------------------------------//
 
 Route::get('/reportes/productosRecientes', [ReportesController::class, 'productosRecientes'])->name('productos_recientes');
 
 Route::get('/reportes/productosRetirados', [ReportesController::class, 'productosRetirados'])->name('productos_retirados');
 
+//---------------------------------------------Fin funciones para reportes------------------------------------------------------//
+
+//---------------------------------------------Ajustes------------------------------------------------------//
+
+Route::get('/paises', [PaisController::class, 'index'])->name('paises');
+
+Route::get('/departamentos', [DepartamentoController::class, 'index'])->name('departamentos');
+
+Route::get('/municipios', [MunicipioController::class, 'index'])->name('municipios');
+
+//---------------------------------------------Fin ajustes------------------------------------------------------//
