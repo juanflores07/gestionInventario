@@ -41,11 +41,12 @@ class ProductoController extends Controller
     public function eliminar($id_producto)
     {
         $producto = Producto::findOrFail($id_producto);
+        $codigo = $producto->codigo;
 
         // Eliminar el producto
         $producto->delete();
 
-        return redirect()->route('productos')->with('success', 'Producto eliminado correctamente');
+        return redirect()->route('productos')->with('success', "Producto {$codigo} eliminado correctamente");
 
     }
 
@@ -84,10 +85,10 @@ class ProductoController extends Controller
         $validatedData['codigo'] = $codigo_producto;
 
         // Crear y guardar el nuevo producto
-        Producto::create($validatedData);
+        $producto = Producto::create($validatedData);
 
         // Redireccionar con un mensaje de éxito
-        return redirect()->route('productos')->with('success', 'Producto creado correctamente');
+        return redirect()->route('productos')->with('success', "Producto {$producto->codigo} creado correctamente");
     }
 
     public function guardarEdicion($id_producto, Request $request)
@@ -127,7 +128,7 @@ class ProductoController extends Controller
         // Actualizar los datos del producto con los nuevos valores del formulario
         $producto->update($validatedData);
     
-        return redirect()->route('productos')->with('success', 'Producto editado correctamente');
+        return redirect()->route('productos')->with('success', "Producto {$producto->codigo} editado correctamente");
     }
 
     public static function quitarTildes($texto) {
