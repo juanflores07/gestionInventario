@@ -95,6 +95,10 @@ class ProductoController extends Controller
     {
         $producto = Producto::findOrFail($id_producto);
 
+        $codigoViejo = $producto->codigo;
+        $codigoSinEspacio = trim($codigoViejo);
+        $codigoSinNumero = substr($codigoSinEspacio, 0, 9); // Obtener los primeros 9 caracteres
+
         $validatedData = $request->validate([
             'nombre' => 'required|string|max:50',
             'cantidad' => 'required|integer',
@@ -116,19 +120,30 @@ class ProductoController extends Controller
         //Construccion código
         $codigo_base = $nombre_corto . '-' . $nombre_proveedor_corto . '-';
 
-        $ultimo_producto = Producto::where('codigo', 'like', $codigo_base . '%')->orderBy('id_producto', 'desc')->first();
-        $ultimo_numero_secuencia = $ultimo_producto ? intval(substr($ultimo_producto->codigo, -4)) : 0;
-        $nuevo_numero_secuencia = $ultimo_numero_secuencia + 1;
-
-        $codigo_producto = $codigo_base . str_pad($nuevo_numero_secuencia, 4, '0', STR_PAD_LEFT);
+        if($codigoSinNumero == $codigo_base){
+            //Nada, que mantenga el mismo codigo
+            $codigo_producto = $codigoViejo;
+        }else{
+            $ultimo_producto = Producto::where('codigo', 'like', $codigo_base . '%')->orderBy('id_producto', 'desc')->first();
+            $ultimo_numero_secuencia = $ultimo_producto ? intval(substr($ultimo_producto->codigo, -4)) : 0;
+            $nuevo_numero_secuencia = $ultimo_numero_secuencia + 1;
+    
+            $codigo_producto = $codigo_base . str_pad($nuevo_numero_secuencia, 4, '0', STR_PAD_LEFT);
+        }
 
         // Agregar el código al array validado
         $validatedData['codigo'] = $codigo_producto;
 
         // Actualizar los datos del producto con los nuevos valores del formulario
         $producto->update($validatedData);
+
+        if($codigoSinNumero == $codigo_base)
+        {
+            return redirect()->route('productos')->with('success', "Producto {$producto->codigo} editado correctamente");
+        }else{
+            return redirect()->route('productos')->with('success', "Producto con código anterior {$codigoViejo} fue editado correctamente a {$producto->codigo}");
+        }
     
-        return redirect()->route('productos')->with('success', "Producto {$producto->codigo} editado correctamente");
     }
 
     public static function quitarTildes($texto) {
