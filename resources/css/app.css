@@ -283,7 +283,7 @@ a {
 
 @media (min-width: 800px) and (max-width: 1063px) {
   .sidebar {
-    width:110px;
+    width:100px;
   }
 
   .sidebar-menu-item a .menu-text {
@@ -296,17 +296,16 @@ a {
   .sidebar-submenu > li > a {
     font-size: 0px;
   }
-
   .sidebar-submenu {
     padding-left: 0px;
     list-style: none; 
   }
   
   .main-content {
-    margin-left: 150px;
+    margin-left: 120px;
   }
   .sidebar-menu {
-    font-size: 8rem;
+    font-size: 0.8rem;
   }
   .submenu-toggle {
     margin-left: auto;
