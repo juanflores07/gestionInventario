@@ -16,22 +16,21 @@ describe('Nuevo producto', () => {
   })
 
   it('debería crear un producto correctamente', () => {
-    const nombre = 'Máscaras de respiración'
-    const cantidad = 80
-    const descripcion = ' Máscara completa de presión positiva de altas prestaciones, fabricada con materiales innovadores '
+    const nombre = 'Gabinete para manguera'
+    const cantidad = 40
+    const descripcion = ' CONTRA INCENDIO DE SOBREPONER MARCA EXTIN-FLAM COLOR ROJO CON PUERTA DE ACRILICO MEDIDA: 70x88x24cm '
     const fecha_ingreso = '2024-05-18'
-    const fecha_vencimiento = '2025-12-31'
-    const precio = 100
+    const fecha_vencimiento = ''
+    const precio = 146.90
 
     cy.get('#nombre').type(nombre)
     cy.get('#cantidad').type(cantidad)
     cy.get('#descripcion').type(descripcion)
     cy.get('#fecha_ingreso').type(fecha_ingreso)
-    cy.get('#fecha_vencimiento').type(fecha_vencimiento)
     cy.get('#precio').type(precio)
 
     // Busca el elemento <select> y verifica que sea visible
-    cy.get('#proveedor').select('5', {force: true});
+    cy.get('#proveedor').select('8', {force: true});
 
     //------------------------------------------------------
     cy.get('button[type="submit"]').click()
