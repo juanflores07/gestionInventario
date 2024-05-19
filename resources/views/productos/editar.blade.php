@@ -14,7 +14,7 @@
 </div>
 <section class="container">
     <div class="mb-4"></div>
-    <form action="{{ route('guardar_edicion_producto', ['id_producto' => $producto->id_producto]) }}" method="POST">
+    <form id="formEditarProducto" action="{{ route('guardar_edicion_producto', ['id_producto' => $producto->id_producto]) }}" method="POST">
     @csrf
         <h3>Editando producto con código: {{ $producto->codigo }}</h3>
         <div class="mb-3"></div>
