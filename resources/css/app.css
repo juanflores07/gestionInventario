@@ -250,19 +250,8 @@ a {
 /*-----------1358 es pantalla completa en la laptop------*/
 @media (min-width: 1064px) and (max-width: 1358px) {
   .sidebar {
-    width: 120px;
+    width: 200px;
     left: 0;
-  }
-
-  .sidebar-menu-item a .menu-text {
-    display: none;
-  }
-  .sidebar-menu-item a i.fa-solid {
-    display: inline-block;
-  }
-
-  .sidebar-submenu > li > a {
-    font-size: 0px;
   }
 
   .sidebar-submenu {
