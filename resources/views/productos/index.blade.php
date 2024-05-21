@@ -2,6 +2,26 @@
 
 @section('title', 'Productos')
 
+@section('estilos')
+<style>
+/* Estilos CSS */
+#tablaProductos {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+#tablaProductos th,
+#tablaProductos td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd; /* Borde inferior para todas las celdas */
+}
+
+#tablaProductos th {
+    background-color: #f2f2f2;
+}
+</style>
+@endsection
+
 @section('contenido')
 <div class="row">
     <nav aria-label="Breadcrumb">
@@ -29,30 +49,42 @@
 
 <br>
 
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div><br>
+@endif
+
 <div class="table-responsive" id="tabProducto">
     <table id="tablaProductos" class="table table-bordered">
     <thead class="text-center">
         <tr class="bg-navy">
             <th>Código</th>
             <th>Nombre</th>
-            <th>Fecha ingreso</th>
             <th>Existencias</th>
+            <th>Fecha ingreso</th>
+            <th>Fecha vencimiento</th>
+            <th>Precio</th>
             <th>Proveedor</th>
-            <th width="25%">Acciones</th>
+            <th width="20%">Acciones</th>
         </tr>
     </thead>
     <tbody class="text-center">
+      @foreach ($productos as $producto)
         <tr>
-            <td>EXT-00001</td>
-            <td>EXTINTOR DE FUEGO ABC</td>
-            <td>2024-05-04</td>
-            <td>10</td>
-            <td>ABRO</td>
-            <td>
-                <a class="btn btn-app bg-info"><i class="far fa-eye"></i>&nbsp;Ver</a>
-                <a class="btn btn-app bg-warning"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Editar</a>
-            </td>
+          <td>{{$producto->codigo}}</td>
+          <td>{{$producto->nombre}}</td>
+          <td>{{$producto->cantidad}}</td>
+          <td>{{$producto->fecha_ingreso}}</td>
+          <td>{{$producto->fecha_vencimiento ? $producto->fecha_vencimiento : 'No aplica'}}</td>
+          <td>{{$producto->precio}}</td>
+          <td>{{$producto->proveedor->nombre}}</td>
+          <td>
+            <a href="{{ route('ver_producto', ['id_producto' => $producto->id_producto]) }}" class="btn btn-app bg-info"><i class="far fa-eye"></i>&nbsp;Ver</a>
+            <a href="{{ route('editar_producto', ['id_producto' => $producto->id_producto]) }}" class="btn btn-app bg-warning"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Editar</a>
+          </td>
         </tr>
+      @endforeach
     </tbody>
     </table>
 </div>

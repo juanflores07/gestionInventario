@@ -53,6 +53,9 @@
         </a>
         <ul id="ajustes-submenu" class="collapse sidebar-submenu">
           <li><a href="#"><i class="fa-solid fa-gears"></i>Ajustes</a></li>
+          <li><a href="{{route('paises')}}"><i class="fa-solid fa-earth-americas"></i>Países</a></li>
+          <li><a href="{{route('departamentos')}}"><i class="fa-solid fa-earth-americas"></i>Departamentos</a></li>
+          <li><a href="{{route('municipios')}}"><i class="fa-solid fa-earth-americas"></i>Municipios</a></li>
         </ul>
       </li>
     </ul>

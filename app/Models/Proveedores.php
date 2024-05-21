@@ -9,18 +9,25 @@ class Proveedores extends Model
 {
     use HasFactory;
 
-        // Indica el nombre de la tabla
         protected $table = 'proveedor';
 
-        // Indica los campos que pueden ser asignados
+        protected $primaryKey = 'id_proveedor';
+    
         protected $fillable = [
             'nombre',
-            'codigo',
-            'direccion',
             'telefono',
-            'nit'
-        ];
+            'nit',
+            'direccion',
+            'id_municipio'
+        ];    
+
+        // Relación con el modelo Municipio
+        public function municipio()
+        {
+            return $this->belongsTo(Municipio::class, 'id_municipio', 'id_municipio');
+        }
     
-        // Desactiva las marcas de tiempo automáticas
+        //Para que no quiera meter valores en las columas generadas automaticamente por Laravel que son: created_at y updated_at
         public $timestamps = false;
+
 }

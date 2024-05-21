@@ -46,7 +46,7 @@
 
     <!-- Footer -->
     <footer class="footer fixed-bottom bg-dark text-white d-flex justify-content-end align-items-center">
-        <p class="mb-0">&copy; {{ date('Y') }} Gestión de inventarios ©</p>
+        <p class="mb-0">&copy; {{ date('Y') }} Gestión de inventarios ©&nbsp; </p>
     </footer>
 
     <!-- JQuery -->
@@ -63,6 +63,25 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/i18n/es.js"></script>
     
+    <!--Sweet Alert (Para el swal)-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+    $(document).ready(function(){
+        function setSidebarHeight() {
+            var windowHeight = $(window).width();
+            if(windowHeight < 2000){
+                $('.sidebar').height(windowHeight);
+            }
+            console.log(windowHeight);
+        }
+
+        // Llama a la función al cargar la página y cuando se redimensiona la ventana
+        setSidebarHeight();
+        $(window).resize(setSidebarHeight);
+        
+    });
+    </script>
     <!-- Script adicional -->
     @yield('scripts')
 </body>

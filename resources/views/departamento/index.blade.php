@@ -1,22 +1,22 @@
 @extends('menu')
 
-@section('title', 'Proveedores')
+@section('title', 'Departamentos')
 
 @section('estilos')
 <style>
 /* Estilos CSS */
-#tablaProveedor {
+#tablaDepartamento {
     border-collapse: separate;
     border-spacing: 0;
 }
 
-#tablaProveedor th,
-#tablaProveedor td {
+#tablaDepartamento th,
+#tablaDepartamento td {
     padding: 8px;
     border-bottom: 1px solid #ddd; /* Borde inferior para todas las celdas */
 }
 
-#tablaProveedor th {
+#tablaDepartamento th {
     background-color: #f2f2f2;
 }
 </style>
@@ -27,7 +27,7 @@
     <nav aria-label="Breadcrumb">
     <ol class="breadcrumb breadcrumb-sm float-right">
         <li class="breadcrumb-item"><a href="{{route('principal')}}">Gestión</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Proveedores</li>
+        <li class="breadcrumb-item active" aria-current="page">Departamentos</li>
     </ol>
     </nav>
 </div>
@@ -37,50 +37,28 @@
 <div class="row">
     <div class="col-md-10">
         <div class="form-group">
-            <h3>Registro de proveedores</h3>
-        </div>
-    </div>
-    <div class="col-md-2 ml-auto mt-2">
-        <div class="form-group">
-            <a href="{{ route('nuevo_proveedor') }}" class="btn btn-primary btn-sm btn-block">Agregar nuevo proveedor</a>
+            <h3>Departamentos</h3>
         </div>
     </div>
 </div>
 
 <br>
 
-@if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div><br>
-@endif
-
 <div class="table-responsive" id="tabProveedor">
-    <table id="tablaProveedor" class="table table-bordered">
+    <table id="tablaDepartamento" class="table table-bordered">
     <thead class="text-center">
         <tr class="bg-navy">
-            <th>Nombre o razón social</th>
-            <th>Teléfono</th>
-            <th>NIT</th>
-            <th>Dirección</th>
-            <th>Departamento</th>
-            <th>Municipio</th>
-            <th width="20%">Acciones</th>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>País</th>
         </tr>
     </thead>
     <tbody class="text-center">
-      @foreach ($proveedores as $proveedor)
+      @foreach ($departamentos as $departamento)
         <tr>
-          <td>{{ $proveedor->nombre }}</td>
-          <td>{{ $proveedor->telefono }}</td>
-          <td>{{ $proveedor->nit }}</td>
-          <td>{{ $proveedor->direccion }}</td>
-          <td>{{ $proveedor->municipio->nombre}}</td>
-          <td>{{ $proveedor->municipio->departamento->nombre}}</td>
-          <td>
-            <a href="{{ route('ver_proveedor', ['id_proveedor' => $proveedor->id_proveedor]) }}" class="btn btn-app bg-info"><i class="far fa-eye"></i>&nbsp;Ver</a>
-            <a href="{{ route('editar_proveedor', ['id_proveedor' => $proveedor->id_proveedor]) }}" class="btn btn-app bg-warning"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Editar</a>
-          </td>
+          <td>{{ $departamento->id_departamento }}</td>
+          <td>{{ $departamento->nombre }}</td>
+          <td>{{ $departamento->pais->nombre }}</td>
         </tr>
       @endforeach
     </tbody>
@@ -91,7 +69,7 @@
 @section('scripts')
 <script>
 $(document).ready(function() {
-  var table = $('#tablaProveedor').DataTable({
+  var table = $('#tablaDepartamento').DataTable({
     dom: 'Bfrtip',
     buttons: [
       {
