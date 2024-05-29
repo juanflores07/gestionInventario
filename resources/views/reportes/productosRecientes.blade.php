@@ -2,6 +2,26 @@
 
 @section('title', 'Productos')
 
+@section('estilos')
+<style>
+/* Estilos CSS */
+#tablaProductosRecientes {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+#tablaProductosRecientes th,
+#tablaProductosRecientes td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd; /* Borde inferior para todas las celdas */
+}
+
+#tablaProductosRecientes th {
+    background-color: #f2f2f2;
+}
+</style>
+@endsection
+
 @section('contenido')
 <div class="row">
     <nav aria-label="Breadcrumb">
@@ -18,7 +38,7 @@
     <div class="col-md-10">
         <div class="form-group">
             <h3>Reporte de productos ingresados</h3>
-            <h5>Lista de los productos ingresados recientemente</h5>
+            <h5>Lista de los productos ingresados la última semana </h5>
         </div>
     </div>
 </div>
@@ -36,14 +56,16 @@
         </tr>
     </thead>
     <tbody class="text-center">
+      @foreach ($productos as $producto)
         <tr>
-            <td>EXT-00001</td>
-            <td>EXTINTOR DE FUEGO ABC</td>
-            <td>2024-05-04</td>
-            <td>
-                <a class="btn btn-app bg-info"><i class="far fa-eye"></i>&nbsp;Ver</a>
-            </td>
+          <td>{{$producto->codigo}}</td>
+          <td>{{$producto->nombre}}</td>
+          <td>{{$producto->fecha_ingreso}}</td>
+          <td>
+            <a href="{{ route('ver_producto', ['id_producto' => $producto->id_producto]) }}" class="btn btn-app bg-info"><i class="far fa-eye"></i>&nbsp;Ver</a>
+          </td>
         </tr>
+      @endforeach
     </tbody>
     </table>
 </div>

@@ -2,6 +2,26 @@
 
 @section('title', 'Productos')
 
+@section('estilos')
+<style>
+/* Estilos CSS */
+#tablaProductosRetirados {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+#tablaProductosRetirados th,
+#tablaProductosRetirados td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd; /* Borde inferior para todas las celdas */
+}
+
+#tablaProductosRetirados th {
+    background-color: #f2f2f2;
+}
+</style>
+@endsection
+
 @section('contenido')
 <div class="row">
     <nav aria-label="Breadcrumb">
@@ -36,7 +56,16 @@
         </tr>
     </thead>
     <tbody class="text-center">
-
+      @foreach ($productos as $producto)
+        <tr>
+          <td>{{$producto->codigo}}</td>
+          <td>{{$producto->nombre}}</td>
+          <td>{{$producto->fecha_retiro}}</td>
+          <td>
+            <a href="{{ route('ver_producto', ['id_producto' => $producto->id_producto]) }}" class="btn btn-app bg-info"><i class="far fa-eye"></i>&nbsp;Ver</a>
+          </td>
+        </tr>
+      @endforeach
     </tbody>
     </table>
 </div>
