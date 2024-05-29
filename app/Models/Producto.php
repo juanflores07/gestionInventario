@@ -21,7 +21,9 @@ class Producto extends Model
         'fecha_ingreso',
         'fecha_vencimiento',
         'precio',
-        'id_proveedor'
+        'id_proveedor',
+        'estado',
+        'fecha_retiro'
     ];
 
     // Relación con el modelo Proveedores
