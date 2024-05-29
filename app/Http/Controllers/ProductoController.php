@@ -10,9 +10,9 @@ class ProductoController extends Controller
 {
     public function index()
     {
-        $productos = Producto::orderBy('fecha_ingreso', 'desc')
+        $productos = Producto::where('estado', '=', 1)
         ->orderBy('id_producto', 'desc')
-        ->get();
+        ->get();   
 
         return view('productos.index', ['productos' => $productos]); 
     }
@@ -50,6 +50,24 @@ class ProductoController extends Controller
 
     }
 
+    public function retirarProducto($id_producto)
+    {
+        $producto = Producto::findOrFail($id_producto);
+        $codigo = $producto->codigo;
+
+        //Darle un estado predefinido (1- Activo, 2-Retirado)
+        $validatedData['estado'] = 2;
+
+        $fechaActual = date('Y-m-d'); // Formato de fecha y hora
+        $validatedData['fecha_retiro'] = $fechaActual;
+
+        // Actualizar los datos del producto con el nuevo valor de estado
+        $producto->update($validatedData);
+
+        return redirect()->route('productos')->with('success', "Producto {$codigo} retirado correctamente");
+
+    }
+
     public function guardar(Request $request)
     {
         // Validar los datos del formulario
@@ -83,6 +101,9 @@ class ProductoController extends Controller
 
         // Agregar el código al array validado
         $validatedData['codigo'] = $codigo_producto;
+
+        //Darle un estado predefinido (1- Activo, 2-Retirado)
+        $validatedData['estado'] = 1;
 
         // Crear y guardar el nuevo producto
         $producto = Producto::create($validatedData);

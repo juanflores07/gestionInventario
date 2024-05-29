@@ -28,6 +28,8 @@ Route::post('/productos/guardarEdicion/{id_producto}', [ProductoController::clas
 
 Route::post('/productos/eliminar/{id_producto}', [ProductoController::class, 'eliminar'])->name('eliminar_producto');
 
+Route::post('/productos/retirar/{id_producto}', [ProductoController::class, 'retirarProducto'])->name('retirar_producto');
+
 
 //-------------------------------------------Fin producto-----------------------------------//
 

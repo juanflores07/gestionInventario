@@ -65,7 +65,9 @@
                 <a href="{{ route('productos') }}" class="btn btn-info btn-sm btn-block"><i class="fa-solid fa-arrow-left"></i>&nbsp;Regresar</a>
             </div>
             <div class="col-md-6">
-                <button type="submit" class="btn btn-success btn-sm btn-block"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Guardar edición</a>
+                @if($producto->estado == 1)
+                    <button type="submit" class="btn btn-success btn-sm btn-block"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Guardar edición</a>
+                @endif
             </div>
         </div>
     </form>
@@ -78,6 +80,14 @@
             @csrf
                 <button id="btnBorrar" class="btn btn-danger btn-sm btn-block"><i class="fa-solid fa-trash"></i>&nbsp;Eliminar producto</button>
             </form>
+        </div>
+        <div class="col-md-6">
+            @if($producto->estado == 1)
+                <form id="formRetirarProducto" action="{{ route('retirar_producto', ['id_producto' => $producto->id_producto]) }}" method="POST">
+                @csrf
+                    <button id="btnRetirar" class="btn btn-dark btn-sm btn-block"><i class="fa-solid fa-ban"></i>&nbsp;Retirar producto</button>
+                </form>
+            @endif
         </div>
     </div>
 </section>
@@ -99,7 +109,7 @@ $(document).on('change', '#proveedor', function(){
 $('#btnBorrar').on('click', function() {
     event.preventDefault();
     Swal.fire({
-        title: '¿Estás seguro?',
+        title: '¿Está seguro?',
         text: 'Esta acción eliminará el producto permanentemente.',
         icon: 'warning',
         showCancelButton: true,
@@ -111,6 +121,25 @@ $('#btnBorrar').on('click', function() {
         if (result.isConfirmed) {
             // Si el usuario confirma, enviar la solicitud de eliminación
             $('#formEliminarProducto').submit();
+        }
+    });
+});
+
+$('#btnRetirar').on('click', function() {
+    event.preventDefault();
+    Swal.fire({
+        title: '¿Está seguro?',
+        text: 'Esta acción retirará el producto del inventario de forma permanente.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, retirar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Si el usuario confirma, enviar la solicitud de retiro
+            $('#formRetirarProducto').submit();
         }
     });
 });
