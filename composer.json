@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.2",
         "illuminate/database": "*",
+        "laravel-lang/lang": "^15.5",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9"
     },

@@ -14,29 +14,51 @@
 </div>
 <section class="container">
     <div class="mb-4"></div>
-    <form action="{{ route('guardar_proveedor') }}" method="POST">
+    <form action="{{ route('guardar_proveedor') }}" method="POST" id="formProveedor">
     @csrf
         <h3>Nuevo proveedor</h3>
         <div class="mb-3"></div>
 
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="form-group">
             <label for="nombre">Nombre o razón social</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
+            <input type="text" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre" value="{{ old('nombre') }}">
+            @error('nombre')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="form-group">
             <label for="nit">NIT</label>
-            <input type="text" class="form-control" id="nit" name="nit" placeholder="####-######-###-#">
+            <input type="text" class="form-control @error('nit') is-invalid @enderror" id="nit" name="nit" value="{{ old('nit') }}">
+            @error('nit')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="form-group">
-            <label for="nrc">Teléfono</label>
-            <input type="text" class="form-control" id="telefono" name="telefono" placeholder="########">
+            <label for="telefono">Teléfono</label>
+            <input type="text" class="form-control @error('telefono') is-invalid @enderror" id="telefono" name="telefono" value="{{ old('telefono') }}">
+            @error('telefono')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
         
         <div class="form-group">
-            <label for="nrc">Dirección</label>
-            <input type="text" class="form-control" id="direccion" name="direccion">
+            <label for="direccion">Dirección</label>
+            <input type="text" class="form-control @error('direccion') is-invalid @enderror" id="direccion" name="direccion" value="{{ old('direccion') }}">
+            @error('direccion')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="form-group">
@@ -63,7 +85,6 @@
             </select>
         </div>
 
-
         <div class="mb-3"></div>
 
         <div class="form-group row">
@@ -71,7 +92,7 @@
                 <a href="{{ route('proveedores') }}" class="btn btn-info btn-sm btn-block"><i class="fa-solid fa-arrow-left"></i>&nbsp;Regresar</a>
             </div>
             <div class="col-md-6">
-                <button type="submit" class="btn btn-success btn-sm btn-block"><i class="fa-solid fa-floppy-disk"></i>&nbsp;Guardar</a>
+                <button class="btn btn-success btn-sm btn-block" id="guardarProveedor"><i class="fa-solid fa-floppy-disk"></i>&nbsp;Guardar</button>
             </div>
         </div>
     </form>
@@ -148,6 +169,50 @@ $(document).on('change', '#departamento', function(){
     }); 
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    let control = 1;
+    const botonGuardar = document.getElementById('guardarProveedor');
+    botonGuardar.addEventListener('click', function(event) {
+        event.preventDefault();
+        var idPais = document.getElementById("pais");
+        var pais = idPais.options[idPais.selectedIndex].value;
+        var idDepartamento = document.getElementById("departamento");
+        var departamento = idDepartamento.options[idDepartamento.selectedIndex].value;
+        var idMunicipio = document.getElementById("municipio");
+        var municipio = idMunicipio.options[idMunicipio.selectedIndex].value;
+
+        if (control == 1) {
+            if (pais == "") {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Falta el país',
+                    text: 'Favor seleccione el país'
+                });
+            } else if (departamento == "") {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Falta el departamento',
+                    text: 'Favor seleccione el departamento'
+                });
+            } else if (municipio == "") {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Falta el municipio',
+                    text: 'Favor seleccione el municipio'
+                });
+            } else {
+                // Si todas las validaciones pasan, envía el formulario manualmente
+                document.getElementById('formProveedor').submit();
+                control = 0;
+            }
+        }
+    });
+
+    const nitInput = document.getElementById('nit');
+    const telefonoInput = document.getElementById('telefono');
+    Inputmask("9999-999999-999-9").mask(nitInput);
+    Inputmask("9999-9999").mask(telefonoInput);
+});
 
 
 </script>

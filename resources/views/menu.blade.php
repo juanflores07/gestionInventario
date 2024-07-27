@@ -28,6 +28,9 @@
     
     <!-- Lo de estilos y script (no se si es necesario) -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <!--Inputmask -->
+    <link href="https://cdn.jsdelivr.net/npm/inputmask@5.0.9/dist/colormask.min.css" rel="stylesheet">
     
     <!-- Estilos adicionales -->
     @yield('estilos')
@@ -74,7 +77,10 @@
     
     <!--Sweet Alert (Para el swal)-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+
+    <!--Inputmask -->
+    <script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.9/dist/jquery.inputmask.min.js"></script>
+
     <script>
     $(document).ready(function(){
         function setSidebarHeight() {
